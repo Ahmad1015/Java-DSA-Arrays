@@ -1,12 +1,13 @@
 public class Main{
     public static void main(String[] args){
         Array arr = new Array();
-
+        arr.print(Array.arrayToPass);
+        System.out.println("Searching element 8 in array and outputting where its found if found:");
+        System.out.println(arr.search(Array.arrayToPass, 8));
+        System.out.println("Searching if zero is found at zeroth location:");
+        System.out.println(arr.searchAtLocation(Array.arrayToPass, 0, 0));
     }
 }
-
-
-
 
 abstract class List {
     public void print(int[] arr){
@@ -41,12 +42,12 @@ abstract class List {
 }
 
 class Array extends List{
-    public int[] arr;
+    public static int[] arrayToPass;
 
     public Array(){                         // Non parameter Constructor
-        arr = new int[10];
-        for(int i = 0;i<arr.length;i++){    // Adding values into Array
-            arr[i] = i;
+        arrayToPass = new int[10];
+        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
+            arrayToPass[i] = i;
         }
     }
 }
