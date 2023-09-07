@@ -70,7 +70,6 @@ class Array extends List{
             arrayToPass[i+1] = arrayToPass[i];
         }
         arrayToPass[0] = element;
-        element = element;
     }
 
     @Override
