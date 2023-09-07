@@ -1,4 +1,3 @@
-// File Completed
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
@@ -23,9 +22,13 @@ public class Main{
         System.out.println("Outputting the new Array where Size was specified by the User:");
         arr2.print();
                                                                                                 // Task D: I am Adding another Method called Update
-        arr2.updateArray(5, 0);
+        arr2.updateArray(5, 2);
         System.out.println("Printing Array after Updating :");
         arr2.print();
+        System.out.print("Add Value to Add to the start of the array: ");
+        int element = input.nextInt();
+        arr.addAtStart(element);
+        arr.print();
     }   
 }
 
@@ -53,12 +56,21 @@ class Array extends List{
         }
     }
 
-    public Array(int size){
+    public Array(int size){                 // parameterized Constructor
         arrayToPass = new int[size];
         int count = size * 50;
         for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
             arrayToPass[i] = count--;
         }
+    }
+
+    @Override
+    public void addAtStart(int element){
+        for(int i=arrayToPass.length-2;i>=0;i--){
+            arrayToPass[i+1] = arrayToPass[i];
+        }
+        arrayToPass[0] = element;
+        element = element;
     }
 
     @Override
