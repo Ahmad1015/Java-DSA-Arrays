@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
-        List arr=new Array();
+        List arr=new Array();                                                                   // Task A:
         arr.print();
         System.out.println("Searching element in array and outputting where its found if found:");
         int location = arr.search(8);
@@ -11,16 +11,17 @@ public class Main{
         else{
             System.out.printf("Element Found in Array at Location : %d\n",location);
         }
-        System.out.println("Sorting Array now and printing it :");
+        System.out.println("Sorting Array now and printing it :");                              // Lab Task B: Sorting The Array
         arr.sortArray();
         arr.print();
         Scanner input = new Scanner(System.in);
-        System.out.println("Now Using the Parametrized Constructor:");
+        System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
         System.out.println("Enter the Array Size:");
         int size = input.nextInt();
         List arr2 =new Array(size);
         System.out.println("Outputting the new Array where Size was specified by the User:");
         arr2.print();
+                                                                                                // Task D: I am Adding another Method called Update
     }
 }
 
