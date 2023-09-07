@@ -2,24 +2,22 @@ public class Main{
     public static void main(String[] args){
         List arr=new Array();
         //Array arr = new Array();
-        arr.print(Array.arrayToPass);
-        System.out.println("Searching element 8 in array and outputting where its found if found:");
-        System.out.println(arr.search(Array.arrayToPass, 8));
-        System.out.println("Searching if zero is found at zeroth location:");
-        System.out.println(arr.searchAtLocation(Array.arrayToPass, 0, 0));
+        arr.print();
+        System.out.println("Searching element in array and outputting where its found if found:");
+        System.out.println(arr.search(8));
     }
 }
 
 abstract class List {
-    abstract public void print(int[] arr); 
-    public void addAtStart(int element,int[] arr){};
-    public void addAtEnd(int element,int[] arr){};
-    void addAtLocation(int location,int element,int[] arr){};
-    public void delAtEnd(int[] arr){};
-    public void delAtStart(int[] arr){};
-    public void delAtLocation(int location,int element,int[] arr){};
+    abstract public void print(); 
+    public void addAtStart(int element){};
+    public void addAtEnd(int element){};
+    void addAtLocation(int location,int element){};
+    public void delAtEnd(){};
+    public void delAtStart(){};
+    public void delAtLocation(int location){};
     abstract public int search(int element);
-  
+    public void sortArray(){};
 }
 
 class Array extends List{
@@ -40,10 +38,12 @@ class Array extends List{
              }
          }
          return -1;
-     }
-    public void print(int[] arr){
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i]);
+    }
+
+    @Override
+    public void print(){
+        for(int i=0;i<arrayToPass.length;i++){
+            System.out.println(arrayToPass[i]);
         }
     } // End of Print Method
 }
