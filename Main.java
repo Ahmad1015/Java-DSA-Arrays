@@ -22,7 +22,10 @@ public class Main{
         System.out.println("Outputting the new Array where Size was specified by the User:");
         arr2.print();
                                                                                                 // Task D: I am Adding another Method called Update
-    }
+        arr2.updateArray(5, 0);
+        System.out.println("Printing Array after Updating :");
+        arr2.print();
+    }   
 }
 
 abstract class List {
@@ -35,6 +38,7 @@ abstract class List {
     public void delAtLocation(int location){};
     abstract public int search(int element);
     abstract public void sortArray();
+    abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
 }
 
 class Array extends List{
@@ -101,4 +105,9 @@ class Array extends List{
         break;
     }                                   // End of the inner loop
     }                                   // End of the outer Loop
+
+    @Override
+    public void updateArray(int element,int location){
+        arrayToPass[location] = element;
+    }
 }
