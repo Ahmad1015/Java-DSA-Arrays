@@ -11,7 +11,7 @@ public class Main{
         else{
             System.out.printf("Element Found in Array at Location : %d\n",location);
         }
-        System.out.println("Sorting Array now and printing it :");                              // Lab Task B: Sorting The Array
+        System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
         arr.sortArray();
         arr.print();
         Scanner input = new Scanner(System.in);
@@ -29,6 +29,10 @@ public class Main{
         int element = input.nextInt();
         arr.addAtStart(element);
         arr.print();
+        System.out.print("Add Value to Add to the End of the array: ");
+        element = input.nextInt();
+        arr.addAtEnd(element);
+        arr.print();
     }   
 }
 
@@ -42,7 +46,7 @@ abstract class List {
     public void delAtLocation(int location){};
     abstract public int search(int element);
     abstract public void sortArray();
-    abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
+    public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
 }
 
 class Array extends List{
@@ -73,6 +77,14 @@ class Array extends List{
     }
 
     @Override
+    public void addAtEnd(int element){
+        for(int i=1;i<arrayToPass.length;i++){
+            arrayToPass[i-1] = arrayToPass[i];
+        }
+        arrayToPass[arrayToPass.length-1] = element;
+    }
+
+    @Override
     public int search(int element){
          for(int i=0;i<arrayToPass.length;i++){  // Linear Searching
              if (arrayToPass[i] == element){
@@ -85,8 +97,9 @@ class Array extends List{
     @Override
     public void print(){
         for(int i=0;i<arrayToPass.length;i++){
-            System.out.println(arrayToPass[i]);
+            System.out.print(arrayToPass[i]+" ");
         }
+        System.out.println();
     } // End of Print Method
 
     @Override
