@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         List arr=new Array();
@@ -13,6 +14,13 @@ public class Main{
         System.out.println("Sorting Array now and printing it :");
         arr.sortArray();
         arr.print();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Now Using the Parametrized Constructor:");
+        System.out.println("Enter the Array Size:");
+        int size = input.nextInt();
+        List arr2 =new Array(size);
+        System.out.println("Outputting the new Array where Size was specified by the User:");
+        arr2.print();
     }
 }
 
@@ -34,6 +42,14 @@ class Array extends List{
     public Array(){                         // Non parameter Constructor
         arrayToPass = new int[10];
         int count = 100;
+        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
+            arrayToPass[i] = count--;
+        }
+    }
+
+    public Array(int size){
+        arrayToPass = new int[size];
+        int count = size * 50;
         for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
             arrayToPass[i] = count--;
         }
