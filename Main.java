@@ -11,6 +11,8 @@ public class Main{
             System.out.printf("Element Found in Array at Location : %d\n",location);
         }
         System.out.println("Sorting Array now and printing it :");
+        arr.sortArray();
+        arr.print();
     }
 }
 
@@ -55,7 +57,7 @@ class Array extends List{
     } // End of Print Method
 
     @Override
-    public void sortArray(){
+    public void sortArray(){                // Using bubble Sorting
         int size = arrayToPass.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
@@ -68,7 +70,6 @@ class Array extends List{
 
                                             // compare two array elements
         if (arrayToPass[j] > arrayToPass[j + 1]) {
-
                                             // swapping occurs if elements
                                             // are not in the intended order
           int temp = arrayToPass[j];
