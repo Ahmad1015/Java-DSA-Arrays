@@ -2,10 +2,10 @@
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in)
+        Scanner input = new Scanner(System.in);
         List arr=new Array();                                                                   // Task A:
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -25,13 +25,10 @@ public class Main{
                 // Do binary search here
             }
             else if (choice == 4){
-
+                System.out.println("Sorting Array ascendingly:");                              
+                arr.AscendSort();
             }
         }
-
-        // System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
-        // arr.sortArray();
-        // arr.print();
         // Scanner input = new Scanner(System.in);
         // System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
         // System.out.println("Enter the Array Size:");
@@ -63,7 +60,7 @@ abstract class List {
     public void delAtStart(){};
     public void delAtLocation(int location){};
     abstract public int LinearSearch(int element);
-    abstract public void sortArray();
+    abstract public void AscendSort();
     public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
 }
 
@@ -121,7 +118,7 @@ class Array extends List{
     } // End of Print Method
 
     @Override
-    public void sortArray(){                // Using bubble Sorting
+    public void AscendSort(){                // Using bubble Sorting
         int size = arrayToPass.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
