@@ -293,7 +293,7 @@ class Array extends List{
     @Override
     public boolean sorting(int order){                // Using bubble Sorting
         if (order == 1 || order == 2){
-        int size = array_int.length;                                    
+        int size = n;                                    
         for (int i = 0; i < (size-1); i++) {                                      
         boolean swapped = false;
         for (int j = 0; j < (size-i-1); j++) {                                  
