@@ -35,7 +35,7 @@ public class Main{
             System.out.println("Welcome to the Menu! Please enter your choice.\n");
 
             int choice = input.nextInt();
-            if (choice == 1){
+            if (choice == 1){                                       // Linear Searching
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
                 int location = arr.LinearSearch(input.nextInt());
                 if (location == -1){
@@ -45,11 +45,11 @@ public class Main{
                     System.out.printf("Element Found in Array at Location : %d\n",location);
                 }
             }
-            else if (choice == 2){
+            else if (choice == 2){                              // Printing the Array
                 System.out.println("Printing Array now: ");
                 arr.print();
             }
-            else if (choice == 3){
+            else if (choice == 3){                              // Binary Searching
                 System.out.println("Enter Element to search using Binary Search Algorithm:");
                 int element = input.nextInt();
                 int value = arr.binarySearch(element);
@@ -58,19 +58,19 @@ public class Main{
                 else
                     System.out.printf("Element was found at : %d\n",value);
             }
-            else if (choice == 4){
+            else if (choice == 4){                              // Sort the Array Ascendingly or Descendingly
                 System.out.println("Enter 1 to Sort Ascendingly\nEnter 2 to Sort Descendingly");
                 int order = input.nextInt();                            
                 arr.sorting(order);
             }
-            else if (choice == 5){
+            else if (choice == 5){                              // Updating the Array
                 System.out.println("Enter the Location");
                 int location = input.nextInt();
                 System.out.println("Enter the Element to Add there");
                 int element = input.nextInt();
                 arr.updateArray(element, location);
             }
-            else if (choice == 6){
+            else if (choice == 6){                              // Adding the element at the start of the array
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 boolean flag = arr.addAtStart(element);
@@ -79,7 +79,7 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
-            else if (choice == 7){
+            else if (choice == 7){                              // Adding the element at the end of the array
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 boolean flag = arr.addAtEnd(element);
@@ -88,7 +88,7 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
-            else if (choice == 8){
+            else if (choice == 8){                              // Adding the element at user specified location
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 System.out.println("Enter a Valid Location to Add the Element at: ");
@@ -99,7 +99,7 @@ public class Main{
                 else
                     System.out.println("Invalid Location!!!\nElement was not Added");
             }
-            else if (choice == 9){
+            else if (choice == 9){                              // Deleting the First Element of the array
                 try {
                     int element = arr.delAtStart();
                     System.out.println("Deleted element: " + element);
@@ -107,7 +107,7 @@ public class Main{
                     System.out.println("Error Occured:  " + e.getMessage());
                 }
             }
-            else if (choice == 10){
+            else if (choice == 10){                             // Deleting the last element of the array
                 try {
                     int element = arr.delAtEnd();
                     System.out.println("Deleted element: " + element);
@@ -115,7 +115,7 @@ public class Main{
                     System.out.println("Error Occured:  " + e.getMessage());
                 }  
             }
-            else if (choice == 11){
+            else if (choice == 11){                             // Deleting the element at the location specified by the user
                 System.out.println("\nEnter Location to Delete at: ");
                 int location = input.nextInt();
                 try {
@@ -125,7 +125,7 @@ public class Main{
                     System.out.println("Error Occured:  " + e.getMessage());
                 }
             }
-            else if (choice == -1)
+            else if (choice == -1)                              // breaking out of the Menu
                 break;
             else
                 System.out.println("Wrong Input Try again");
@@ -152,24 +152,23 @@ abstract class List {
 
 class Array extends List{
     public  int[] array_int;
-    int n;              //Actual number of elements  ->k
-    int N;              //array size
+    int n;                                          //Actual number of elements  ->k
+    int N;                                          //array size
 
-    public Array(){     
+    public Array(){                                 // Non parameter Constructor
         N=5;           
-        n=0;         // Non parameter Constructor
+        n=0;         
         array_int = new int[N];
     }
 
-    public Array(int size){ 
+    public Array(int size){                         // parameterized Constructor
         N=size;  
-        n=0;              // parameterized Constructor
+        n=0;              
         array_int = new int[N];
     }
                                                                 // Insertion Methods
     @Override                                                    
     public boolean addAtStart(int element){
-        //validate to before adding the element at the start if there are empty spaces in the array
         if (n>=N){
             return false;
         }
@@ -280,7 +279,7 @@ class Array extends List{
     }
 
     @Override
-    public void print(){
+    public void print(){                                    // Print Method
         for(int i=0;i<n;i++){
             System.out.print(array_int[i]+" ");
         }
@@ -310,7 +309,7 @@ class Array extends List{
         return false;                           
     }
 
-    @Override
+    @Override                                           // Update Array Method
     public void updateArray(int element,int location){
         array_int[location] = element;
     }
