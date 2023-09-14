@@ -133,16 +133,37 @@ class Array extends List{
           arrayToPass[j + 1] = temp;
           swapped = true;
         }
-      }
+      }                                 // End of the inner loop
                                         // no swapping means the array is already sorted so no need for further comparison
       if (!swapped)
         break;
-    }                                   // End of the inner loop
     }                                   // End of the outer Loop
+    }                                   // End of method
 
     @Override
     public void descendSort(){
-
+        int size = arrayToPass.length;
+                                            // loop to access each array element
+    for (int i = 0; i < (size-1); i++) {
+                                            // check if swapping occurs
+      boolean swapped = false;
+                                            // loop to compare adjacent elements
+      for (int j = 0; j < (size-i-1); j++) {
+                                            // compare two array elements
+        if (arrayToPass[j] < arrayToPass[j + 1]) {
+                                            // swapping occurs if elements
+                                            // are not in the intended order
+          int temp = arrayToPass[j];
+          arrayToPass[j] = arrayToPass[j + 1];
+          arrayToPass[j + 1] = temp;
+          swapped = true;
+        }
+      }                                 // End of the inner loop
+                                        // no swapping means the array is already sorted so no need for further comparison
+      if (!swapped)
+        break;
+    } 
+                   
     }
 
     @Override
