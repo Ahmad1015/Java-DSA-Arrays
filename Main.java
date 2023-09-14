@@ -51,18 +51,15 @@ public class Main{
                 arr.updateArray(element, location);
             }
         }
-                                                      
-        // arr2.updateArray(5, 2);
-        // System.out.println("Printing Array after Updating :");
-        // arr2.print();
+
         // System.out.print("Add Value to Add to the start of the array: ");
         // int element = input.nextInt();
         // arr.addAtStart(element);
-        // arr.print();
+   
         // System.out.print("Add Value to Add to the End of the array: ");
         // element = input.nextInt();
         // arr.addAtEnd(element);
-        // arr.print();
+
     }   
 }
 
@@ -75,9 +72,11 @@ abstract class List {
     public void delAtStart(){};
     public void delAtLocation(int location){};
     abstract public int LinearSearch(int element);
+    abstract public void binarySearch(int element);
     abstract public void ascendSort();
     abstract public void descendSort();
-    public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
+    abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
+    
 }
 
 class Array extends List{
@@ -116,6 +115,10 @@ class Array extends List{
          }
          return -1;
     }// End of LinearSearch Method
+    @Override
+    public void binarySearch(int element){
+        
+    }
 
     @Override
     public void print(){
