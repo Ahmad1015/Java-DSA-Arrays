@@ -1,5 +1,7 @@
 // Work on it 
 import java.util.Scanner;
+
+import javax.tools.JavaFileManager.Location;
 public class Main{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
@@ -16,7 +18,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\nPress 7 to add at the start of Array\nPress 8 to add at the end of Array\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\nPress 5 to Update Array Element\nPress 6 to add at the start of Array\nPress 7 to add at the end of Array\nPress 8 to add at location\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -42,8 +44,9 @@ public class Main{
                     System.out.printf("Element was found at : %d",value);
             }
             else if (choice == 4){
-                System.out.println("Sorting Array ascendingly:");                              
-                arr.ascendSort();
+                System.out.println("Enter 1 to Sort Ascendingly\nEnter 2 to Sort Descendingly");
+                int order = input.nextInt();                            
+                arr.sorting(order);
             }
             else if (choice == 5){
                 System.out.println("Sorting Array ascendingly:");                              
@@ -74,6 +77,17 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
+            else if (choice == 9){
+                System.out.println("Enter the element to add: ");
+                int element = input.nextInt();
+                System.out.println("Enter a Valid Location to Add the Element at: ");
+                int location = input.nextInt();
+                boolean flag = arr.addAtLocation(location, element);
+                if (flag)
+                    System.out.println("Enter was successfully Added");
+                else
+                    System.out.println("Invalid Location!!!\nElement was not Added");
+            }
         }
 
         // System.out.print("Add Value to Add to the start of the array: ");
@@ -91,14 +105,13 @@ abstract class List {
     abstract public void print(); 
     abstract public boolean addAtStart(int element);
     abstract public boolean addAtEnd(int element);
-    public void addAtLocation(int location,int element){};
+    abstract public boolean addAtLocation(int location,int element);
     public void delAtEnd(){};
     public void delAtStart(){};
     public void delAtLocation(int location){};
-    abstract public int LinearSearch(int element);
+    abstract public int LinearSearch(int element);  // Remove one method
     abstract public int binarySearch(int element);
-    abstract public void ascendSort();
-    abstract public void descendSort();
+    abstract public void sorting(int order);  // Combine them into 1
     abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
     
 }
@@ -119,24 +132,24 @@ class Array extends List{
         n=0;              // parameterized Constructor
         array_int = new int[N];
     }
-
-    @Override   // perfect
+                                                                // Insertion Algorithms
+    @Override   // 
     public boolean addAtStart(int element){
         //validate to before adding the element at the start if there are empty spaces in the array
         if (n>=N){
             return false;
         }
         else{
-            for(int i=array_int.length-2;i>=0;i--){
-            array_int[i+1] = array_int[i];
-        }
+            for(int i=N-2;i>=0;i--){
+                array_int[i+1] = array_int[i];
+            }
         array_int[0] = element;
         n++;
         return true;
         }
     }
 
-    @Override
+    @Override   // 
     public boolean addAtEnd(int element){
         if(n>=N){
             return false;
@@ -149,6 +162,20 @@ class Array extends List{
         n++;
         return true;
         }
+    }
+
+    @Override   // Testing this Block right now 
+    public boolean addAtLocation(int location,int element){
+        if (location > -1 && location <=n && n<=N){
+            for(int i=n;i>=location;i--){
+                array_int[i-1] = array_int[i];
+            }
+            array_int[location] = element;
+            n++;
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override
@@ -190,54 +217,26 @@ class Array extends List{
     } // End of Print Method
 
     @Override
-    public void ascendSort(){                // Using bubble Sorting
-        int size = array_int.length;
-                                            // loop to access each array element
-    for (int i = 0; i < (size-1); i++) {
-                                            // check if swapping occurs
-      boolean swapped = false;
-                                            // loop to compare adjacent elements
-      for (int j = 0; j < (size-i-1); j++) {
-                                            // compare two array elements
-        if (array_int[j] > array_int[j + 1]) {
-                                            // swapping occurs if elements
-                                            // are not in the intended order
-          int temp = array_int[j];
-          array_int[j] = array_int[j + 1];
-          array_int[j + 1] = temp;
-          swapped = true;
+    public boolean sorting(int order){                // Using bubble Sorting
+        if (order == 1 || order == 2){
+        int size = array_int.length;                                    
+        for (int i = 0; i < (size-1); i++) {                                      
+        boolean swapped = false;
+        for (int j = 0; j < (size-i-1); j++) {                                  
+                if ((order == 1 && array_int[j] > array_int[j + 1]) || (order == 2 && array_int[j] < array_int[j + 1])) {
+                    int temp = array_int[j];
+                    array_int[j] = array_int[j + 1];
+                    array_int[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped)
+                break;
         }
-      }                                 // End of the inner loop
-                                        // no swapping means the array is already sorted so no need for further comparison
-      if (!swapped)
-        break;
-    }                                   // End of the outer Loop
-    }                                   // End of method
-
-    @Override
-    public void descendSort(){
-        int size = array_int.length;
-                                            // loop to access each array element
-    for (int i = 0; i < (size-1); i++) {
-                                            // check if swapping occurs
-      boolean swapped = false;
-                                            // loop to compare adjacent elements
-      for (int j = 0; j < (size-i-1); j++) {
-                                            // compare two array elements
-        if (array_int[j] < array_int[j + 1]) {
-                                            // swapping occurs if elements
-                                            // are not in the intended order
-          int temp = array_int[j];
-          array_int[j] = array_int[j + 1];
-          array_int[j + 1] = temp;
-          swapped = true;
-        }
-      }                                 // End of the inner loop
-                                        // no swapping means the array is already sorted so no need for further comparison
-      if (!swapped)
-        break;
-    } 
-
+        return true;
+    }
+    else
+        return false;                           
     }
 
     @Override
