@@ -3,7 +3,18 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
-        List arr=new Array();                                                                   // Task A:
+        List arr=new Array();
+        System.out.println("Enter 1 to create an Non Contructor Object\nEnter 2 to create a parameterized Contructor");
+        int type = input.nextInt();
+        if (type == 1){
+            arr=new Array();  
+        }
+        else if (type == 2){                                        // Using the Parameterized Constructor
+            System.out.println("Enter the Parameter Value");
+            List arr2 = new Array(input.nextInt());
+            arr = arr2;
+        }
+
         while(true){
             System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\n");
             int choice = input.nextInt();
@@ -30,10 +41,13 @@ public class Main{
             }
             else if (choice == 5){
                 System.out.println("Sorting Array ascendingly:");                              
-                // Do sorting here
+                arr.descendSort();
+            }
+            else if (choice == 6){
+
             }
         }
-        // Scanner input = new Scanner(System.in);
+
         // System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
         // System.out.println("Enter the Array Size:");
         // int size = input.nextInt();
@@ -163,7 +177,7 @@ class Array extends List{
       if (!swapped)
         break;
     } 
-                   
+
     }
 
     @Override
