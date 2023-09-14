@@ -2,38 +2,46 @@
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
+        Scanner input = new Scanner(System.in)
         List arr=new Array();                                                                   // Task A:
-        arr.print();
-        System.out.println("Searching element in array and outputting where its found if found:");
-        int location = arr.search(8);
-        if (location == -1){
-            System.out.println("Element not Found in the Array");
+        while(true){
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\n");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.println("Enter the number to Linear Search in the Array and output if Found:");
+                int location = arr.LinearSearch(input.nextInt());
+                if (location == -1){
+                    System.out.println("Element not Found in the Array");
+                }
+                else{
+                    System.out.printf("Element Found in Array at Location : %d\n",location);
+                }
+            }
         }
-        else{
-            System.out.printf("Element Found in Array at Location : %d\n",location);
-        }
-        System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
-        arr.sortArray();
-        arr.print();
-        Scanner input = new Scanner(System.in);
-        System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
-        System.out.println("Enter the Array Size:");
-        int size = input.nextInt();
-        List arr2 =new Array(size);
-        System.out.println("Outputting the new Array where Size was specified by the User:");
-        arr2.print();
-                                                                                                // Task D: I am Adding another Method called Update
-        arr2.updateArray(5, 2);
-        System.out.println("Printing Array after Updating :");
-        arr2.print();
-        System.out.print("Add Value to Add to the start of the array: ");
-        int element = input.nextInt();
-        arr.addAtStart(element);
-        arr.print();
-        System.out.print("Add Value to Add to the End of the array: ");
-        element = input.nextInt();
-        arr.addAtEnd(element);
-        arr.print();
+        // arr.print();
+        // 
+        // System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
+        // arr.sortArray();
+        // arr.print();
+        // Scanner input = new Scanner(System.in);
+        // System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
+        // System.out.println("Enter the Array Size:");
+        // int size = input.nextInt();
+        // List arr2 =new Array(size);
+        // System.out.println("Outputting the new Array where Size was specified by the User:");
+        // arr2.print();
+        //                                                                                         // Task D: I am Adding another Method called Update
+        // arr2.updateArray(5, 2);
+        // System.out.println("Printing Array after Updating :");
+        // arr2.print();
+        // System.out.print("Add Value to Add to the start of the array: ");
+        // int element = input.nextInt();
+        // arr.addAtStart(element);
+        // arr.print();
+        // System.out.print("Add Value to Add to the End of the array: ");
+        // element = input.nextInt();
+        // arr.addAtEnd(element);
+        // arr.print();
     }   
 }
 
@@ -45,7 +53,7 @@ abstract class List {
     public void delAtEnd(){};
     public void delAtStart(){};
     public void delAtLocation(int location){};
-    abstract public int search(int element);
+    abstract public int LinearSearch(int element);
     abstract public void sortArray();
     public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
 }
@@ -86,14 +94,14 @@ class Array extends List{
     }
 
     @Override
-    public int search(int element){
+    public int LinearSearch(int element){
          for(int i=0;i<arrayToPass.length;i++){  // Linear Searching
              if (arrayToPass[i] == element){
                  return i;
              }
          }
          return -1;
-    }// End of Search Method
+    }// End of LinearSearch Method
 
     @Override
     public void print(){
