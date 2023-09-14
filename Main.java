@@ -16,7 +16,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\nPress 7 to add at the start of Array\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\nPress 7 to add at the start of Array\nPress 8 to add at the end of Array\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -65,7 +65,15 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
-            else if ()
+            else if (choice == 8){
+                System.out.println("Enter the element to add: ");
+                int element = input.nextInt();
+                boolean flag = arr.addAtEnd(element);
+                if (flag)
+                    System.out.println("Element was successfully Added");
+                else
+                    System.out.println("Error!!!\nThere is no space left in the Array");
+            }
         }
 
         // System.out.print("Add Value to Add to the start of the array: ");
@@ -82,7 +90,7 @@ public class Main{
 abstract class List {
     abstract public void print(); 
     abstract public boolean addAtStart(int element);
-    public void addAtEnd(int element){};
+    abstract public boolean addAtEnd(int element);
     public void addAtLocation(int location,int element){};
     public void delAtEnd(){};
     public void delAtStart(){};
@@ -129,11 +137,18 @@ class Array extends List{
     }
 
     @Override
-    public void addAtEnd(int element){
+    public boolean addAtEnd(int element){
+        if(n>=N){
+            return false;
+        }
+        else{
         for(int i=1;i<array_int.length;i++){
             array_int[i-1] = array_int[i];
         }
         array_int[array_int.length-1] = element;
+        n++;
+        return true;
+        }
     }
 
     @Override
