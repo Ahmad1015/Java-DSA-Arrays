@@ -16,7 +16,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -44,17 +44,14 @@ public class Main{
                 arr.descendSort();
             }
             else if (choice == 6){
-
+                System.out.println("Enter the Location");
+                int location = input.nextInt();
+                System.out.println("Enter the Element to Add there");
+                int element = input.nextInt();
+                arr.updateArray(element, location);
             }
         }
-
-        // System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
-        // System.out.println("Enter the Array Size:");
-        // int size = input.nextInt();
-        // List arr2 =new Array(size);
-        // System.out.println("Outputting the new Array where Size was specified by the User:");
-        // arr2.print();
-        //                                                                                         // Task D: I am Adding another Method called Update
+                                                      
         // arr2.updateArray(5, 2);
         // System.out.println("Printing Array after Updating :");
         // arr2.print();
@@ -88,7 +85,6 @@ class Array extends List{
 
     public Array(){                         // Non parameter Constructor
         arrayToPass = new int[5];
-        
     }
 
     public Array(int size){                 // parameterized Constructor
