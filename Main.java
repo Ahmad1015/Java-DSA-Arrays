@@ -16,7 +16,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\nPress 7 to add at the start of Array\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -56,6 +56,16 @@ public class Main{
                 int element = input.nextInt();
                 arr.updateArray(element, location);
             }
+            else if (choice == 7){
+                System.out.println("Enter the element to add: ");
+                int element = input.nextInt();
+                boolean flag = arr.addAtStart(element);
+                if (flag)
+                    System.out.println("Element was successfully Added");
+                else
+                    System.out.println("Error!!!\nThere is no space left in the Array");
+            }
+            else if ()
         }
 
         // System.out.print("Add Value to Add to the start of the array: ");
@@ -71,7 +81,7 @@ public class Main{
 
 abstract class List {
     abstract public void print(); 
-    public void addAtStart(int element){};
+    abstract public boolean addAtStart(int element);
     public void addAtEnd(int element){};
     public void addAtLocation(int location,int element){};
     public void delAtEnd(){};
@@ -87,8 +97,8 @@ abstract class List {
 
 class Array extends List{
     public  int[] array_int;
-    int n;//data size ->k
-    int N;//array size
+    int n;              //data size ->k
+    int N;              //array size
 
     public Array(){     
         N=5;           
@@ -98,18 +108,24 @@ class Array extends List{
 
     public Array(int size){ 
         N=size;  
-        n=o;              // parameterized Constructor
+        n=0;              // parameterized Constructor
         array_int = new int[N];
     }
 
     @Override
-    public void addAtStart(int element){//return boolean
-        //validate
-        for(int i=array_int.length-2;i>=0;i--){
+    public boolean addAtStart(int element){//return boolean
+        //validate to before adding the element at the start if there are empty spaces in the array
+        if (n>=N){
+            return false;
+        }
+        else{
+            for(int i=array_int.length-2;i>=0;i--){
             array_int[i+1] = array_int[i];
         }
         array_int[0] = element;
         n++;
+        return true;
+        }
     }
 
     @Override
@@ -122,7 +138,7 @@ class Array extends List{
 
     @Override
     public int LinearSearch(int element){
-         for(int i=0;i<array_int.length;i++){  // Linear Searching
+         for(int i=0;i<n;i++){  // Linear Searching
              if (array_int[i] == element){
                  return i;
              }
@@ -152,7 +168,7 @@ class Array extends List{
 
     @Override
     public void print(){
-        for(int i=0;i<array_int.length;i++){
+        for(int i=0;i<n;i++){
             System.out.print(array_int[i]+" ");
         }
         System.out.println();
