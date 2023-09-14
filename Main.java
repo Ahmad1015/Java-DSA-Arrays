@@ -1,4 +1,3 @@
-// Work on it 
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
@@ -16,7 +15,25 @@ public class Main{
         }
 
         while(true){
-            System.out.println("\nWelcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\nPress 5 to Update Array Element\nPress 6 to add at the start of Array\nPress 7 to add at the end of Array\nPress 8 to add at location\n");
+
+            System.out.println("+-----------------------------------+----------------------------------------+");
+            System.out.println("|              Option               |                Action                  |");
+            System.out.println("+-----------------------------------+----------------------------------------+");
+            System.out.println("| Press 1                           | Linear Search the array                |");
+            System.out.println("| Press 2                           | Print the array                        |");
+            System.out.println("| Press 3                           | Binary Search the array                |");
+            System.out.println("| Press 4                           | Sort the array                         |");
+            System.out.println("| Press 5                           | Update Array Element                   |");
+            System.out.println("| Press 6                           | Add at the start of Array              |");
+            System.out.println("| Press 7                           | Add at the end of Array                |");
+            System.out.println("| Press 8                           | Add at location                        |");
+            System.out.println("| Press 9                           | Delete at the Start                    |");
+            System.out.println("| Press 10                          | Delete at the End                      |");
+            System.out.println("| Press 11                          | Delete at Location                     |");
+            System.out.println("| Press -1                          | End                                    |");
+            System.out.println("+-----------------------------------+----------------------------------------+");
+            System.out.println("Welcome to the Menu! Please enter your choice.");
+
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -82,6 +99,36 @@ public class Main{
                 else
                     System.out.println("Invalid Location!!!\nElement was not Added");
             }
+            else if (choice == 9){
+                try {
+                    int element = arr.delAtStart();
+                    System.out.println("Deleted element: " + element);
+                } catch (Exception e) {
+                    System.out.println("Error Occured:  " + e.getMessage());
+                }
+            }
+            else if (choice == 10){
+                try {
+                    int element = arr.delAtEnd();
+                    System.out.println("Deleted element: " + element);
+                } catch (Exception e) {
+                    System.out.println("Error Occured:  " + e.getMessage());
+                }  
+            }
+            else if (choice == 11){
+                System.out.println("\nEnter Location to Delete at: ");
+                int location = input.nextInt();
+                try {
+                    int element = arr.delAtLocation(location);
+                    System.out.println("Deleted element: " + element);
+                } catch (Exception e) {
+                    System.out.println("Error Occured:  " + e.getMessage());
+                }
+            }
+            else if (choice == -1)
+                break;
+            else
+                System.out.println("Wrong Input Try again");
         }
 
 
@@ -89,17 +136,17 @@ public class Main{
 }
 
 abstract class List {
-    abstract public void print();                                                   // perfect
-    abstract public boolean addAtStart(int element);                                // perfect
-    abstract public boolean addAtEnd(int element);                                  // perfect
-    abstract public boolean addAtLocation(int location,int element);                // perfect
-    abstract public int delAtEnd();
-    abstract public int delAtStart();
-    abstract public int delAtLocation(int location);
-    abstract public int LinearSearch(int element);                                  // perfect
-    abstract public int binarySearch(int element);                                  // perfect
-    abstract public boolean sorting(int order);                                     // perfect
-    abstract public void updateArray(int element,int location);                     // perfect          
+    abstract public void print();                                                   
+    abstract public boolean addAtStart(int element);                                
+    abstract public boolean addAtEnd(int element);                                  
+    abstract public boolean addAtLocation(int location,int element);                
+    abstract public int delAtEnd() throws Exception;
+    abstract public int delAtStart() throws Exception;
+    abstract public int delAtLocation(int location) throws Exception;
+    abstract public int LinearSearch(int element);                                  
+    abstract public int binarySearch(int element);                                  
+    abstract public boolean sorting(int order);                                     
+    abstract public void updateArray(int element,int location);                              
     
 }
 
@@ -164,7 +211,7 @@ class Array extends List{
 
                                                                 // Deletion Methods
     @Override
-    public int delAtStart(){
+    public int delAtStart() throws Exception{
         if (n>0){
             int element = array_int[0];
             for(int i=1;i<n;i++){
@@ -174,22 +221,22 @@ class Array extends List{
             return element;
         }
         else
-            return -1;
+            throw new Exception("Deletion was not successful");
     }
 
     @Override
-    public int delAtEnd(){
+    public int delAtEnd() throws Exception{
         if (n>0){
             int element = array_int[n-1];
             n--;
             return element;
         }
         else
-            return -1;
+            throw new Exception("Deletion was not successful");
     }
     
     @Override
-    public int delAtLocation(int location){
+    public int delAtLocation(int location) throws Exception{
         if (location > -1 && location <n){
             int element = array_int[location];
             for(int i=location+1;i<n;i++){
@@ -199,7 +246,7 @@ class Array extends List{
             return element;
         }
         else
-            return -1;
+            throw new Exception("Deletion was not successful");
     }
                                                                     // Searching Methods
     @Override
