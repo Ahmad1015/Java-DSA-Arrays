@@ -15,7 +15,7 @@ public class Main{
         }
 
         while(true){
-
+            System.out.println();
             System.out.println("+-----------------------------------+----------------------------------------+");
             System.out.println("|              Option               |                Action                  |");
             System.out.println("+-----------------------------------+----------------------------------------+");
@@ -32,7 +32,7 @@ public class Main{
             System.out.println("| Press 11                          | Delete at Location                     |");
             System.out.println("| Press -1                          | End                                    |");
             System.out.println("+-----------------------------------+----------------------------------------+");
-            System.out.println("Welcome to the Menu! Please enter your choice.");
+            System.out.println("Welcome to the Menu! Please enter your choice.\n");
 
             int choice = input.nextInt();
             if (choice == 1){
