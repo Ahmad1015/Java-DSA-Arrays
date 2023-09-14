@@ -15,7 +15,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println();
+            System.out.println();                                   // Printing the Menu
             System.out.println("+-----------------------------------+----------------------------------------+");
             System.out.println("|              Option               |                Action                  |");
             System.out.println("+-----------------------------------+----------------------------------------+");
