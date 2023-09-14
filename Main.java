@@ -105,7 +105,7 @@ abstract class List {
 
 class Array extends List{
     public  int[] array_int;
-    int n;              //data size ->k
+    int n;              //Actual number of elements  ->k
     int N;              //array size
 
     public Array(){     
@@ -120,8 +120,8 @@ class Array extends List{
         array_int = new int[N];
     }
 
-    @Override
-    public boolean addAtStart(int element){//return boolean
+    @Override   // perfect
+    public boolean addAtStart(int element){
         //validate to before adding the element at the start if there are empty spaces in the array
         if (n>=N){
             return false;
