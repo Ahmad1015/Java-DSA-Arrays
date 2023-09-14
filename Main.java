@@ -4,7 +4,7 @@ public class Main{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         List arr=new Array();
-        System.out.println("Enter 1 to create an Non parameterized Contructor\nEnter 2 to create a parameterized Contructor");
+        System.out.println("\nEnter 1 to create an Non parameterized Contructor\nEnter 2 to create a parameterized Contructor\n");
         int type = input.nextInt();
         if (type == 1){                                             // Using the Non Parameterized Constructor
             arr=new Array();  
@@ -16,7 +16,7 @@ public class Main{
         }
 
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\nPress 5 to Update Array Element\nPress 6 to add at the start of Array\nPress 7 to add at the end of Array\nPress 8 to add at location\n");
+            System.out.println("\nWelcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\nPress 5 to Update Array Element\nPress 6 to add at the start of Array\nPress 7 to add at the end of Array\nPress 8 to add at location\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -84,29 +84,22 @@ public class Main{
             }
         }
 
-        // System.out.print("Add Value to Add to the start of the array: ");
-        // int element = input.nextInt();
-        // arr.addAtStart(element);
-   
-        // System.out.print("Add Value to Add to the End of the array: ");
-        // element = input.nextInt();
-        // arr.addAtEnd(element);
 
     }   
 }
 
 abstract class List {
-    abstract public void print(); 
-    abstract public boolean addAtStart(int element);
+    abstract public void print();                                                   // perfect
+    abstract public boolean addAtStart(int element);                                // perfect
     abstract public boolean addAtEnd(int element);
     abstract public boolean addAtLocation(int location,int element);
     public void delAtEnd(){};
     public void delAtStart(){};
     public void delAtLocation(int location){};
-    abstract public int LinearSearch(int element);  // Remove one method
+    abstract public int LinearSearch(int element);  
     abstract public int binarySearch(int element);
-    abstract public boolean sorting(int order);  // Combine them into 1
-    abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
+    abstract public boolean sorting(int order);                                     // perfect
+    abstract public void updateArray(int element,int location);                     // perfect          
     
 }
 
@@ -158,7 +151,7 @@ class Array extends List{
         }
     }
 
-    @Override   // Testing this Block right now 
+    @Override   // 
     public boolean addAtLocation(int location,int element){
         if (location > -1 && location <=n && n<=N){
             for(int i=n;i>=location;i--){
