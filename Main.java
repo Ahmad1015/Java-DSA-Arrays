@@ -13,6 +13,10 @@ public class Main{
             List arr2 = new Array(input.nextInt());
             arr = arr2;
         }
+        else{
+            System.out.println("Wrong input");
+            System.exit(1);
+        }
 
         while(true){
             System.out.println();                                   // Printing the Menu
