@@ -5,7 +5,7 @@ public class Main{
         Scanner input = new Scanner(System.in);
         List arr=new Array();                                                                   // Task A:
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -26,7 +26,11 @@ public class Main{
             }
             else if (choice == 4){
                 System.out.println("Sorting Array ascendingly:");                              
-                arr.AscendSort();
+                arr.ascendSort();
+            }
+            else if (choice == 5){
+                System.out.println("Sorting Array ascendingly:");                              
+                // Do sorting here
             }
         }
         // Scanner input = new Scanner(System.in);
@@ -60,7 +64,8 @@ abstract class List {
     public void delAtStart(){};
     public void delAtLocation(int location){};
     abstract public int LinearSearch(int element);
-    abstract public void AscendSort();
+    abstract public void ascendSort();
+    abstract public void descendSort();
     public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
 }
 
@@ -68,19 +73,12 @@ class Array extends List{
     public  int[] arrayToPass;
 
     public Array(){                         // Non parameter Constructor
-        arrayToPass = new int[10];
-        int count = 100;
-        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
-            arrayToPass[i] = count--;
-        }
+        arrayToPass = new int[5];
+        
     }
 
     public Array(int size){                 // parameterized Constructor
         arrayToPass = new int[size];
-        int count = size * 50;
-        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
-            arrayToPass[i] = count--;
-        }
     }
 
     @Override
@@ -118,17 +116,14 @@ class Array extends List{
     } // End of Print Method
 
     @Override
-    public void AscendSort(){                // Using bubble Sorting
+    public void ascendSort(){                // Using bubble Sorting
         int size = arrayToPass.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
-    
                                             // check if swapping occurs
       boolean swapped = false;
-      
                                             // loop to compare adjacent elements
       for (int j = 0; j < (size-i-1); j++) {
-
                                             // compare two array elements
         if (arrayToPass[j] > arrayToPass[j + 1]) {
                                             // swapping occurs if elements
@@ -136,7 +131,6 @@ class Array extends List{
           int temp = arrayToPass[j];
           arrayToPass[j] = arrayToPass[j + 1];
           arrayToPass[j + 1] = temp;
-          
           swapped = true;
         }
       }
@@ -145,6 +139,11 @@ class Array extends List{
         break;
     }                                   // End of the inner loop
     }                                   // End of the outer Loop
+
+    @Override
+    public void descendSort(){
+
+    }
 
     @Override
     public void updateArray(int element,int location){
