@@ -247,7 +247,7 @@ class Array extends List{
         for (int i = 0; i < (size-1); i++) {                                      
         boolean swapped = false;
         for (int j = 0; j < (size-i-1); j++) {                                  
-                if ((order == 1 && array_int[j] > array_int[j + 1]) || (order == 2 && array_int[j] < array_int[j + 1])) {
+                if ((order == 1 && array_int[j] > array_int[j + 1]) || (order == 2 && array_int[j] < array_int[j + 1])) {   // Checking either to sort ascending or descending
                     int temp = array_int[j];
                     array_int[j] = array_int[j + 1];
                     array_int[j + 1] = temp;
