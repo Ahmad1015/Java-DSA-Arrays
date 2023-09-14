@@ -6,7 +6,7 @@ public class Main{
         List arr=new Array();
         System.out.println("Enter 1 to create an Non parameterized Contructor\nEnter 2 to create a parameterized Contructor");
         int type = input.nextInt();
-        if (type == 1){
+        if (type == 1){                                             // Using the Non Parameterized Constructor
             arr=new Array();  
         }
         else if (type == 2){                                        // Using the Parameterized Constructor
@@ -87,21 +87,29 @@ abstract class List {
 
 class Array extends List{
     public  int[] array_int;
+    int n;//data size ->k
+    int N;//array size
 
-    public Array(){                         // Non parameter Constructor
-        array_int = new int[5];
+    public Array(){     
+        N=5;           
+        n=0;         // Non parameter Constructor
+        array_int = new int[N];
     }
 
-    public Array(int size){                 // parameterized Constructor
-        array_int = new int[size];
+    public Array(int size){ 
+        N=size;  
+        n=o;              // parameterized Constructor
+        array_int = new int[N];
     }
 
     @Override
-    public void addAtStart(int element){
+    public void addAtStart(int element){//return boolean
+        //validate
         for(int i=array_int.length-2;i>=0;i--){
             array_int[i+1] = array_int[i];
         }
         array_int[0] = element;
+        n++;
     }
 
     @Override
