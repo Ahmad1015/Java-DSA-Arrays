@@ -4,7 +4,7 @@ public class Main{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         List arr=new Array();
-        System.out.println("Enter 1 to create an Non Contructor Object\nEnter 2 to create a parameterized Contructor");
+        System.out.println("Enter 1 to create an Non parameterized Contructor\nEnter 2 to create a parameterized Contructor");
         int type = input.nextInt();
         if (type == 1){
             arr=new Array();  
