@@ -33,7 +33,13 @@ public class Main{
                 arr.print();
             }
             else if (choice == 3){
-                // Do binary search here
+                System.out.println("Doing Binary Searching");
+                int element = input.nextInt();
+                int value = arr.binarySearch(element);
+                if (value == -1)
+                    System.out.println("Element is not found in array\n");
+                else
+                    System.out.printf("Element was found at : %d",value);
             }
             else if (choice == 4){
                 System.out.println("Sorting Array ascendingly:");                              
@@ -72,7 +78,7 @@ abstract class List {
     public void delAtStart(){};
     public void delAtLocation(int location){};
     abstract public int LinearSearch(int element);
-    abstract public void binarySearch(int element);
+    abstract public int binarySearch(int element);
     abstract public void ascendSort();
     abstract public void descendSort();
     abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
@@ -80,57 +86,73 @@ abstract class List {
 }
 
 class Array extends List{
-    public  int[] arrayToPass;
+    public  int[] array_int;
 
     public Array(){                         // Non parameter Constructor
-        arrayToPass = new int[5];
+        array_int = new int[5];
     }
 
     public Array(int size){                 // parameterized Constructor
-        arrayToPass = new int[size];
+        array_int = new int[size];
     }
 
     @Override
     public void addAtStart(int element){
-        for(int i=arrayToPass.length-2;i>=0;i--){
-            arrayToPass[i+1] = arrayToPass[i];
+        for(int i=array_int.length-2;i>=0;i--){
+            array_int[i+1] = array_int[i];
         }
-        arrayToPass[0] = element;
+        array_int[0] = element;
     }
 
     @Override
     public void addAtEnd(int element){
-        for(int i=1;i<arrayToPass.length;i++){
-            arrayToPass[i-1] = arrayToPass[i];
+        for(int i=1;i<array_int.length;i++){
+            array_int[i-1] = array_int[i];
         }
-        arrayToPass[arrayToPass.length-1] = element;
+        array_int[array_int.length-1] = element;
     }
 
     @Override
     public int LinearSearch(int element){
-         for(int i=0;i<arrayToPass.length;i++){  // Linear Searching
-             if (arrayToPass[i] == element){
+         for(int i=0;i<array_int.length;i++){  // Linear Searching
+             if (array_int[i] == element){
                  return i;
              }
          }
          return -1;
     }// End of LinearSearch Method
+
     @Override
-    public void binarySearch(int element){
-        
+    public int binarySearch(int element){
+        int low = 0;
+        int high = array_int.length-1;
+        while(low<=high){
+            int mid = low + (high-low)/2 ;
+            if (array_int[mid] == element){
+                return mid;
+            }
+            else if (element > array_int[mid]){
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+            
+        }
+        return -1;
     }
 
     @Override
     public void print(){
-        for(int i=0;i<arrayToPass.length;i++){
-            System.out.print(arrayToPass[i]+" ");
+        for(int i=0;i<array_int.length;i++){
+            System.out.print(array_int[i]+" ");
         }
         System.out.println();
     } // End of Print Method
 
     @Override
     public void ascendSort(){                // Using bubble Sorting
-        int size = arrayToPass.length;
+        int size = array_int.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
                                             // check if swapping occurs
@@ -138,12 +160,12 @@ class Array extends List{
                                             // loop to compare adjacent elements
       for (int j = 0; j < (size-i-1); j++) {
                                             // compare two array elements
-        if (arrayToPass[j] > arrayToPass[j + 1]) {
+        if (array_int[j] > array_int[j + 1]) {
                                             // swapping occurs if elements
                                             // are not in the intended order
-          int temp = arrayToPass[j];
-          arrayToPass[j] = arrayToPass[j + 1];
-          arrayToPass[j + 1] = temp;
+          int temp = array_int[j];
+          array_int[j] = array_int[j + 1];
+          array_int[j + 1] = temp;
           swapped = true;
         }
       }                                 // End of the inner loop
@@ -155,7 +177,7 @@ class Array extends List{
 
     @Override
     public void descendSort(){
-        int size = arrayToPass.length;
+        int size = array_int.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
                                             // check if swapping occurs
@@ -163,12 +185,12 @@ class Array extends List{
                                             // loop to compare adjacent elements
       for (int j = 0; j < (size-i-1); j++) {
                                             // compare two array elements
-        if (arrayToPass[j] < arrayToPass[j + 1]) {
+        if (array_int[j] < array_int[j + 1]) {
                                             // swapping occurs if elements
                                             // are not in the intended order
-          int temp = arrayToPass[j];
-          arrayToPass[j] = arrayToPass[j + 1];
-          arrayToPass[j + 1] = temp;
+          int temp = array_int[j];
+          array_int[j] = array_int[j + 1];
+          array_int[j + 1] = temp;
           swapped = true;
         }
       }                                 // End of the inner loop
@@ -181,6 +203,6 @@ class Array extends List{
 
     @Override
     public void updateArray(int element,int location){
-        arrayToPass[location] = element;
+        array_int[location] = element;
     }
 }
