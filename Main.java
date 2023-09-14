@@ -33,13 +33,13 @@ public class Main{
                 arr.print();
             }
             else if (choice == 3){
-                System.out.println("Doing Binary Searching");
+                System.out.println("Enter Element to search using Binary Search Algorithm:");
                 int element = input.nextInt();
                 int value = arr.binarySearch(element);
                 if (value == -1)
                     System.out.println("Element is not found in array\n");
                 else
-                    System.out.printf("Element was found at : %d",value);
+                    System.out.printf("Element was found at : %d\n",value);
             }
             else if (choice == 4){
                 System.out.println("Enter 1 to Sort Ascendingly\nEnter 2 to Sort Descendingly");
@@ -96,8 +96,8 @@ abstract class List {
     abstract public int delAtEnd();
     abstract public int delAtStart();
     abstract public int delAtLocation(int location);
-    abstract public int LinearSearch(int element);  
-    abstract public int binarySearch(int element);
+    abstract public int LinearSearch(int element);                                  // perfect
+    abstract public int binarySearch(int element);                                  // perfect
     abstract public boolean sorting(int order);                                     // perfect
     abstract public void updateArray(int element,int location);                     // perfect          
     
@@ -119,7 +119,7 @@ class Array extends List{
         n=0;              // parameterized Constructor
         array_int = new int[N];
     }
-                                                                // Insertion Algorithms
+                                                                // Insertion Methods
     @Override                                                    
     public boolean addAtStart(int element){
         //validate to before adding the element at the start if there are empty spaces in the array
@@ -148,7 +148,7 @@ class Array extends List{
         }
     }
 
-    @Override   // 
+    @Override   
     public boolean addAtLocation(int location,int element){
         if (location > -1 && location <=n && n<N){
             for(int i=n-1;i>=location;i--){
@@ -162,6 +162,7 @@ class Array extends List{
             return false;
     }
 
+                                                                // Deletion Methods
     @Override
     public int delAtStart(){
         if (n>0){
@@ -200,21 +201,21 @@ class Array extends List{
         else
             return -1;
     }
-
+                                                                    // Searching Methods
     @Override
     public int LinearSearch(int element){
-         for(int i=0;i<n;i++){  // Linear Searching
+         for(int i=0;i<n;i++){  
              if (array_int[i] == element){
                  return i;
              }
          }
          return -1;
-    }// End of LinearSearch Method
+    }
 
     @Override
     public int binarySearch(int element){
         int low = 0;
-        int high = array_int.length-1;
+        int high = n-1;
         while(low<=high){
             int mid = low + (high-low)/2 ;
             if (array_int[mid] == element){
