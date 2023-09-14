@@ -14,7 +14,7 @@ public class Main{
             arr = arr2;
         }
         else{
-            System.out.println("Wrong input");
+            System.out.println("Wrong input");                      // Dealing if user makes a mistake
             System.exit(1);
         }
 
