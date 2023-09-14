@@ -120,7 +120,7 @@ class Array extends List{
         array_int = new int[N];
     }
                                                                 // Insertion Algorithms
-    @Override   // 
+    @Override    
     public boolean addAtStart(int element){
         //validate to before adding the element at the start if there are empty spaces in the array
         if (n>=N){
@@ -136,7 +136,7 @@ class Array extends List{
         }
     }
 
-    @Override   // 
+    @Override    
     public boolean addAtEnd(int element){
         if(n>=N){
             return false;
