@@ -1,39 +1,71 @@
-// merging branch into main
+// Work on it 
 import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
-        List arr=new Array();                                                                   // Task A:
-        arr.print();
-        System.out.println("Searching element in array and outputting where its found if found:");
-        int location = arr.search(8);
-        if (location == -1){
-            System.out.println("Element not Found in the Array");
-        }
-        else{
-            System.out.printf("Element Found in Array at Location : %d\n",location);
-        }
-        System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
-        arr.sortArray();
-        arr.print();
         Scanner input = new Scanner(System.in);
-        System.out.println("Now Using the Parametrized Constructor:");                         // Task C : Parametrized Constructor
-        System.out.println("Enter the Array Size:");
-        int size = input.nextInt();
-        List arr2 =new Array(size);
-        System.out.println("Outputting the new Array where Size was specified by the User:");
-        arr2.print();
-                                                                                                // Task D: I am Adding another Method called Update
-        arr2.updateArray(5, 2);
-        System.out.println("Printing Array after Updating :");
-        arr2.print();
-        System.out.print("Add Value to Add to the start of the array: ");
-        int element = input.nextInt();
-        arr.addAtStart(element);
-        arr.print();
-        System.out.print("Add Value to Add to the End of the array: ");
-        element = input.nextInt();
-        arr.addAtEnd(element);
-        arr.print();
+        List arr=new Array();
+        System.out.println("Enter 1 to create an Non parameterized Contructor\nEnter 2 to create a parameterized Contructor");
+        int type = input.nextInt();
+        if (type == 1){                                             // Using the Non Parameterized Constructor
+            arr=new Array();  
+        }
+        else if (type == 2){                                        // Using the Parameterized Constructor
+            System.out.println("Enter the Parameter Value");
+            List arr2 = new Array(input.nextInt());
+            arr = arr2;
+        }
+
+        while(true){
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array ascendingly\nPress 5 to Sort the array Descending\nPress 6 to Update Array Element\n");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.println("Enter the number to Linear Search in the Array and output if Found:");
+                int location = arr.LinearSearch(input.nextInt());
+                if (location == -1){
+                    System.out.println("Element not Found in the Array");
+                }
+                else{
+                    System.out.printf("Element Found in Array at Location : %d\n",location);
+                }
+            }
+            else if (choice == 2){
+                System.out.println("Printing Array now: ");
+                arr.print();
+            }
+            else if (choice == 3){
+                System.out.println("Doing Binary Searching");
+                int element = input.nextInt();
+                int value = arr.binarySearch(element);
+                if (value == -1)
+                    System.out.println("Element is not found in array\n");
+                else
+                    System.out.printf("Element was found at : %d",value);
+            }
+            else if (choice == 4){
+                System.out.println("Sorting Array ascendingly:");                              
+                arr.ascendSort();
+            }
+            else if (choice == 5){
+                System.out.println("Sorting Array ascendingly:");                              
+                arr.descendSort();
+            }
+            else if (choice == 6){
+                System.out.println("Enter the Location");
+                int location = input.nextInt();
+                System.out.println("Enter the Element to Add there");
+                int element = input.nextInt();
+                arr.updateArray(element, location);
+            }
+        }
+
+        // System.out.print("Add Value to Add to the start of the array: ");
+        // int element = input.nextInt();
+        // arr.addAtStart(element);
+   
+        // System.out.print("Add Value to Add to the End of the array: ");
+        // element = input.nextInt();
+        // arr.addAtEnd(element);
+
     }   
 }
 
@@ -45,95 +77,140 @@ abstract class List {
     public void delAtEnd(){};
     public void delAtStart(){};
     public void delAtLocation(int location){};
-    abstract public int search(int element);
-    abstract public void sortArray();
-    public void updateArray(int element,int location){};                               // Task D: Adding Another method we have missed
+    abstract public int LinearSearch(int element);
+    abstract public int binarySearch(int element);
+    abstract public void ascendSort();
+    abstract public void descendSort();
+    abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
+    
 }
 
 class Array extends List{
-    public  int[] arrayToPass;
+    public  int[] array_int;
+    int n;//data size ->k
+    int N;//array size
 
-    public Array(){                         // Non parameter Constructor
-        arrayToPass = new int[10];
-        int count = 100;
-        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
-            arrayToPass[i] = count--;
-        }
+    public Array(){     
+        N=5;           
+        n=0;         // Non parameter Constructor
+        array_int = new int[N];
     }
 
-    public Array(int size){                 // parameterized Constructor
-        arrayToPass = new int[size];
-        int count = size * 50;
-        for(int i = 0;i<arrayToPass.length;i++){    // Adding values into Array
-            arrayToPass[i] = count--;
-        }
+    public Array(int size){ 
+        N=size;  
+        n=o;              // parameterized Constructor
+        array_int = new int[N];
     }
 
     @Override
-    public void addAtStart(int element){
-        for(int i=arrayToPass.length-2;i>=0;i--){
-            arrayToPass[i+1] = arrayToPass[i];
+    public void addAtStart(int element){//return boolean
+        //validate
+        for(int i=array_int.length-2;i>=0;i--){
+            array_int[i+1] = array_int[i];
         }
-        arrayToPass[0] = element;
+        array_int[0] = element;
+        n++;
     }
 
     @Override
     public void addAtEnd(int element){
-        for(int i=1;i<arrayToPass.length;i++){
-            arrayToPass[i-1] = arrayToPass[i];
+        for(int i=1;i<array_int.length;i++){
+            array_int[i-1] = array_int[i];
         }
-        arrayToPass[arrayToPass.length-1] = element;
+        array_int[array_int.length-1] = element;
     }
 
     @Override
-    public int search(int element){
-         for(int i=0;i<arrayToPass.length;i++){  // Linear Searching
-             if (arrayToPass[i] == element){
+    public int LinearSearch(int element){
+         for(int i=0;i<array_int.length;i++){  // Linear Searching
+             if (array_int[i] == element){
                  return i;
              }
          }
          return -1;
-    }// End of Search Method
+    }// End of LinearSearch Method
+
+    @Override
+    public int binarySearch(int element){
+        int low = 0;
+        int high = array_int.length-1;
+        while(low<=high){
+            int mid = low + (high-low)/2 ;
+            if (array_int[mid] == element){
+                return mid;
+            }
+            else if (element > array_int[mid]){
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+            
+        }
+        return -1;
+    }
 
     @Override
     public void print(){
-        for(int i=0;i<arrayToPass.length;i++){
-            System.out.print(arrayToPass[i]+" ");
+        for(int i=0;i<array_int.length;i++){
+            System.out.print(array_int[i]+" ");
         }
         System.out.println();
     } // End of Print Method
 
     @Override
-    public void sortArray(){                // Using bubble Sorting
-        int size = arrayToPass.length;
+    public void ascendSort(){                // Using bubble Sorting
+        int size = array_int.length;
                                             // loop to access each array element
     for (int i = 0; i < (size-1); i++) {
-    
                                             // check if swapping occurs
       boolean swapped = false;
-      
                                             // loop to compare adjacent elements
       for (int j = 0; j < (size-i-1); j++) {
-
                                             // compare two array elements
-        if (arrayToPass[j] > arrayToPass[j + 1]) {
+        if (array_int[j] > array_int[j + 1]) {
                                             // swapping occurs if elements
                                             // are not in the intended order
-          int temp = arrayToPass[j];
-          arrayToPass[j] = arrayToPass[j + 1];
-          arrayToPass[j + 1] = temp;
-          
+          int temp = array_int[j];
+          array_int[j] = array_int[j + 1];
+          array_int[j + 1] = temp;
           swapped = true;
         }
-      }
+      }                                 // End of the inner loop
                                         // no swapping means the array is already sorted so no need for further comparison
       if (!swapped)
         break;
-    }                                   // End of the inner loop
     }                                   // End of the outer Loop
+    }                                   // End of method
+
+    @Override
+    public void descendSort(){
+        int size = array_int.length;
+                                            // loop to access each array element
+    for (int i = 0; i < (size-1); i++) {
+                                            // check if swapping occurs
+      boolean swapped = false;
+                                            // loop to compare adjacent elements
+      for (int j = 0; j < (size-i-1); j++) {
+                                            // compare two array elements
+        if (array_int[j] < array_int[j + 1]) {
+                                            // swapping occurs if elements
+                                            // are not in the intended order
+          int temp = array_int[j];
+          array_int[j] = array_int[j + 1];
+          array_int[j + 1] = temp;
+          swapped = true;
+        }
+      }                                 // End of the inner loop
+                                        // no swapping means the array is already sorted so no need for further comparison
+      if (!swapped)
+        break;
+    } 
+
+    }
 
     @Override
     public void updateArray(int element,int location){
-        arrayToPass[location] = element;
+        array_int[location] = element;
     }
 }
