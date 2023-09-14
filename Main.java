@@ -1,7 +1,5 @@
 // Work on it 
 import java.util.Scanner;
-
-import javax.tools.JavaFileManager.Location;
 public class Main{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
@@ -49,17 +47,13 @@ public class Main{
                 arr.sorting(order);
             }
             else if (choice == 5){
-                System.out.println("Sorting Array ascendingly:");                              
-                arr.descendSort();
-            }
-            else if (choice == 6){
                 System.out.println("Enter the Location");
                 int location = input.nextInt();
                 System.out.println("Enter the Element to Add there");
                 int element = input.nextInt();
                 arr.updateArray(element, location);
             }
-            else if (choice == 7){
+            else if (choice == 6){
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 boolean flag = arr.addAtStart(element);
@@ -68,7 +62,7 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
-            else if (choice == 8){
+            else if (choice == 7){
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 boolean flag = arr.addAtEnd(element);
@@ -77,7 +71,7 @@ public class Main{
                 else
                     System.out.println("Error!!!\nThere is no space left in the Array");
             }
-            else if (choice == 9){
+            else if (choice == 8){
                 System.out.println("Enter the element to add: ");
                 int element = input.nextInt();
                 System.out.println("Enter a Valid Location to Add the Element at: ");
@@ -111,7 +105,7 @@ abstract class List {
     public void delAtLocation(int location){};
     abstract public int LinearSearch(int element);  // Remove one method
     abstract public int binarySearch(int element);
-    abstract public void sorting(int order);  // Combine them into 1
+    abstract public boolean sorting(int order);  // Combine them into 1
     abstract public void updateArray(int element,int location);                               // Task D: Adding Another method we have missed
     
 }
