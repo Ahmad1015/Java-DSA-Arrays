@@ -5,7 +5,7 @@ public class Main{
         Scanner input = new Scanner(System.in)
         List arr=new Array();                                                                   // Task A:
         while(true){
-            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\n");
+            System.out.println("Welcome to the Menu:\nPress 1 to Linear Search the array\nPress 2 to Print the array\nPress 3 to Binary Search the array\nPress 4 to Sort the array\n");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter the number to Linear Search in the Array and output if Found:");
@@ -17,9 +17,18 @@ public class Main{
                     System.out.printf("Element Found in Array at Location : %d\n",location);
                 }
             }
+            else if (choice == 2){
+                System.out.println("Printing Array now: ");
+                arr.print();
+            }
+            else if (choice == 3){
+                // Do binary search here
+            }
+            else if (choice == 4){
+
+            }
         }
-        // arr.print();
-        // 
+
         // System.out.println("Sorting Array ascendingly now and printing it :");                              // Lab Task B: Sorting The Array
         // arr.sortArray();
         // arr.print();
