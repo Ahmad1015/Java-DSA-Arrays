@@ -91,11 +91,11 @@ public class Main{
 abstract class List {
     abstract public void print();                                                   // perfect
     abstract public boolean addAtStart(int element);                                // perfect
-    abstract public boolean addAtEnd(int element);
+    abstract public boolean addAtEnd(int element);                                  // perfect
     abstract public boolean addAtLocation(int location,int element);
-    public void delAtEnd(){};
-    public void delAtStart(){};
-    public void delAtLocation(int location){};
+    abstract public int delAtEnd();
+    abstract public int delAtStart();
+    abstract public int delAtLocation(int location);
     abstract public int LinearSearch(int element);  
     abstract public int binarySearch(int element);
     abstract public boolean sorting(int order);                                     // perfect
@@ -120,14 +120,14 @@ class Array extends List{
         array_int = new int[N];
     }
                                                                 // Insertion Algorithms
-    @Override    
+    @Override                                                    
     public boolean addAtStart(int element){
         //validate to before adding the element at the start if there are empty spaces in the array
         if (n>=N){
             return false;
         }
         else{
-            for(int i=N-2;i>=0;i--){
+            for(int i=n-1;i>=0;i--){
                 array_int[i+1] = array_int[i];
             }
         array_int[0] = element;
@@ -142,10 +142,10 @@ class Array extends List{
             return false;
         }
         else{
-        for(int i=1;i<array_int.length;i++){
+        for(int i=1;i<n;i++){
             array_int[i-1] = array_int[i];
         }
-        array_int[array_int.length-1] = element;
+        array_int[n] = element;
         n++;
         return true;
         }
@@ -163,6 +163,45 @@ class Array extends List{
         }
         else
             return false;
+    }
+
+    @Override
+    public int delAtStart(){
+        if (n>0){
+            int element = array_int[0];
+            for(int i=1;i<n;i++){
+                array_int[i-1] = array_int[i];
+            }
+            n--;
+            return element;
+        }
+        else
+            return -1;
+    }
+
+    @Override
+    public int delAtEnd(){
+        if (n>0){
+            int element = array_int[n-1];
+            n--;
+            return element;
+        }
+        else
+            return -1;
+    }
+    
+    @Override
+    public int delAtLocation(int location){
+        if (location > -1 && location <n){
+            int element = array_int[location];
+            for(int i=location+1;i<n;i++){
+                array_int[i-1] = array_int[i];
+            }
+            n--;
+            return element;
+        }
+        else
+            return -1;
     }
 
     @Override
