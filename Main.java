@@ -92,7 +92,7 @@ abstract class List {
     abstract public void print();                                                   // perfect
     abstract public boolean addAtStart(int element);                                // perfect
     abstract public boolean addAtEnd(int element);                                  // perfect
-    abstract public boolean addAtLocation(int location,int element);
+    abstract public boolean addAtLocation(int location,int element);                // perfect
     abstract public int delAtEnd();
     abstract public int delAtStart();
     abstract public int delAtLocation(int location);
@@ -142,9 +142,6 @@ class Array extends List{
             return false;
         }
         else{
-        for(int i=1;i<n;i++){
-            array_int[i-1] = array_int[i];
-        }
         array_int[n] = element;
         n++;
         return true;
@@ -153,9 +150,9 @@ class Array extends List{
 
     @Override   // 
     public boolean addAtLocation(int location,int element){
-        if (location > -1 && location <=n && n<=N){
-            for(int i=n;i>=location;i--){
-                array_int[i-1] = array_int[i];
+        if (location > -1 && location <=n && n<N){
+            for(int i=n-1;i>=location;i--){
+                array_int[i+1] = array_int[i];
             }
             array_int[location] = element;
             n++;
